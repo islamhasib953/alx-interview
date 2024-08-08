@@ -1,4 +1,13 @@
+#!/usr/bin/python3
+"""
+0-pascal_triangle
+"""
+
 def pascal_triangle(n):
+    """
+    implement the triangle
+    """
+
     if n <= 0:
         return []
     else:
