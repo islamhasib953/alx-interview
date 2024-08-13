@@ -28,12 +28,24 @@ Write a method that determines if all the boxes can be opened.
 #     return True if sum(unlocked) == len(boxes) else False
 
 '''
-
-
 def canUnlockAll(boxes):
-    keys = [0]
-    for key in keys:
-        for new_key in boxes[key]:
-            if new_key not in keys and new_key < len(boxes):
-                keys.append(new_key)
-    return len(keys) == len(boxes)
+    """
+    Determines if all boxes can be unlocked.
+
+    Args:
+        boxes (list of lists): A list of lists where each list contains
+                               the keys to other boxes.
+
+    Returns:
+        bool: True if all boxes can be unlocked, False otherwise.
+    """
+    visited = set()
+    should_visit = [0]
+
+    while should_visit:
+        i = should_visit.pop()
+        if i not in visited:
+            visited.add(i)
+            should_visit.extend(key for key in boxes[i] if key not in visited)
+
+    return len(visited) == len(boxes)
