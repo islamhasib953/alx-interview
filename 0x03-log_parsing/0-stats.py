@@ -9,12 +9,12 @@ total_file_size = 0
 line_processed = 0
 
 
-def interrupt_handeler(signum, frame):
-    print_status()
-    sys.exit(0)
+# def interrupt_handeler(signum, frame):
+#     print_status()
+#     sys.exit(0)
 
 
-signal.signal(signal.SIGINT, interrupt_handeler)
+# signal.signal(signal.SIGINT, interrupt_handeler)
 
 
 def print_status():
@@ -33,22 +33,22 @@ def print_status():
 
 
 def process_line(line):
-    global line_processed
-    global total_file_size
-    parsed_line = line.split()
-    parsed_line = parsed_line[::-1]
-    if len(parsed_line) > 2:
-        total_file_size += int(parsed_line[0])
-        status_code = int(parsed_line[1])
-        if status_code in count_status.keys():
-            count_status[status_code] += 1
-        line_processed += 1
-        if line_processed % 10 == 0:
-            print_status()
+    try:
+        global line_processed
+        global total_file_size
+        parsed_line = line.split()
+        parsed_line = parsed_line[::-1]
+        if len(parsed_line) > 2:
+            total_file_size += int(parsed_line[0])
+            status_code = int(parsed_line[1])
+            if status_code in count_status.keys():
+                count_status[status_code] += 1
+            line_processed += 1
+            if line_processed % 10 == 0:
+                print_status()
+    finally:
+        print_status()
 
 
-try:
-    for line in sys.stdin:
-        process_line(line)
-finally:
-    pass
+for line in sys.stdin:
+    process_line(line)
