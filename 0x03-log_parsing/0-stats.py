@@ -51,4 +51,4 @@ try:
     for line in sys.stdin:
         process_line(line)
 finally:
-    print_status()
+    pass
