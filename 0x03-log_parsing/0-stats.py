@@ -33,22 +33,22 @@ def print_status():
 
 
 def process_line(line):
-    try:
-        global line_processed
-        global total_file_size
-        parsed_line = line.split()
-        parsed_line = parsed_line[::-1]
-        if len(parsed_line) > 2:
-            total_file_size += int(parsed_line[0])
-            status_code = int(parsed_line[1])
-            if status_code in count_status.keys():
-                count_status[status_code] += 1
-            line_processed += 1
-            if line_processed % 10 == 0:
-                print_status()
-    finally:
-        print_status()
+    global line_processed
+    global total_file_size
+    parsed_line = line.split()
+    parsed_line = parsed_line[::-1]
+    if len(parsed_line) > 2:
+        total_file_size += int(parsed_line[0])
+        status_code = int(parsed_line[1])
+        if status_code in count_status.keys():
+            count_status[status_code] += 1
+        line_processed += 1
+        if line_processed % 10 == 0:
+            print_status()
 
 
-for line in sys.stdin:
-    process_line(line)
+try:
+    for line in sys.stdin:
+        process_line(line)
+finally:
+    print_status()
