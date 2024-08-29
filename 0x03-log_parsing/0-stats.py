@@ -9,12 +9,12 @@ total_file_size = 0
 line_processed = 0
 
 
-# def interrupt_handeler(signum, frame):
-#     print_status()
-#     sys.exit(0)
+def interrupt_handeler(signum, frame):
+    print_status()
+    sys.exit(0)
 
 
-# signal.signal(signal.SIGINT, interrupt_handeler)
+signal.signal(signal.SIGINT, interrupt_handeler)
 
 
 def print_status():
