@@ -39,10 +39,11 @@ def process_line(line):
     parsed_line = parsed_line[::-1]
     if len(parsed_line) > 2:
         line_processed += 1
-        total_file_size += int(parsed_line[0])
-        status_code = int(parsed_line[1])
-        if status_code in count_status.keys():
-            count_status[status_code] += 1
+        if line_processed <= 10:
+            total_file_size += int(parsed_line[0])
+            status_code = int(parsed_line[1])
+            if status_code in count_status.keys():
+                count_status[status_code] += 1
         if line_processed % 10 == 0:
             print_status()
 
