@@ -6,7 +6,7 @@ def validUTF8(data):
     """determines if a given data set represents a valid UTF-8 encoding"""
     cnt = 0
     for byte in data:
-        binary = bin(byte).replace("0b", "").rjust(8, "0")
+        binary = bin(byte).replace("0b", "").rjust(8, "0")[-8:]
         if cnt == 0:
             if binary.startswith("110"):
                 cnt = 1
