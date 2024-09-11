@@ -2,10 +2,6 @@
 
 import sys
 
-N = int(sys.argv[1])
-
-board = [[0 for j in range(N)] for i in range(N)]
-
 
 def issafe(board, row, col):
     for i in range(col):
@@ -36,17 +32,22 @@ def nqueens(board, col, solve_queens):
 
 
 def slove():
-    if len(sys.argv) > 2:
+    if len(sys.argv) != 2:
         print("Usage: nqueens N")
         return sys.exit(1)
 
-    if not sys.argv[1].isdigit():
+    try:
+        global N
+        N = int(sys.argv[1])
+    except ValueError:
         print("N must be a number")
         return sys.exit(1)
 
     if N < 4:
-        print(" N must be at least 4")
+        print("N must be at least 4")
         return sys.exit(1)
+
+    board = [[0 for j in range(N)] for i in range(N)]
     nqueens(board, 0, [])
 
 
