@@ -18,9 +18,12 @@ def issafe(board, row, col):
     return True
 
 
+final_solve = []
+
+
 def nqueens(board, col, solve_queens):
     if col >= N:
-        print(sorted(solve_queens))
+        final_solve.append(sorted(solve_queens))
         return True
     for i in range(N):
         if issafe(board, i, col):
@@ -49,6 +52,10 @@ def slove():
 
     board = [[0 for j in range(N)] for i in range(N)]
     nqueens(board, 0, [])
+
+    final_solve.sort()
+    for i in final_solve:
+        print(i)
 
 
 slove()
