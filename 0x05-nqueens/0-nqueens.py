@@ -20,7 +20,7 @@ def issafe(board, row, col):
 
 def nqueens(board, col, solve_queens):
     if col >= N:
-        print(solve_queens)
+        print(sorted(solve_queens))
         return True
     for i in range(N):
         if issafe(board, i, col):
